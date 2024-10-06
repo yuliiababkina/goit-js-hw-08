@@ -95,9 +95,14 @@ function handleClick(event) {
 
     instance.show();
 
-    gallery.addEventListener("keydown", (event) => {
+    if (instance.visible()) {
+        window.addEventListener("keydown", onPressKeyESC);
+    }
+
+    function onPressKeyESC(event) {
         if (event.code === "Escape") {
             instance.close();
+            window.removeEventListener("keydown", onPressKeyESC);
         }
-    });
+    }
 }
